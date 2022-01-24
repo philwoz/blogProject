@@ -1,6 +1,27 @@
 import React from "react";
+import axios from "axios";
 
 export const RegPage = (props) => {
+    // const [user, setUser] = useState({
+    //     name: "",
+    //     email: "",
+    //     password: ""
+    // })
+    // const handleChange = e => {
+    //     const { name, value } = e.target
+    //     setUser({
+    //         ...user,
+    //         [name]: value
+    //     })
+    // }
+
+    // const register = () => {
+    //     const {name, email, password} = user
+
+    // }
+
+
+
     return (
         <form>
             <div className="mb-3">

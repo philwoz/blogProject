@@ -1,35 +1,71 @@
 
 import React, { useState } from 'react';
-// import { useHistory } from "react-router-dom"
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-import { login } from "../utils/login";
+// import { login } from "../utils/login";
 
 export const LoginPage = (props) => {
-    // const history = useHistory()
-    const [user, setUser] = useState({
-        email:"",
-        password:""
-    })
-
-    const handleChange = e => {
-        const { email, value} = e.target
-        setUser({
-            ...user,
-            [email]:value
+    const navigate = useNavigate();
+    const initialUserState = {
+        email: "",
+        password: "",
+      };
+    
+      const [user, setUser] = useState(initialUserState);
+    
+      const handleInputChange = event => {
+        const { name, value } = event.target;
+        setUser({ ...user, [name]: value });
+      };
+    
+      const login = () => {
+        
+        axios.post("http://localhost:5000/user/login", user)
+        .then(res=>{alert(res.data.message)
+        props.setLogOnUser(res.data.user)
+        navigate.push('/')
+        }).catch(error => {
+            console.log(error)
         })
-    }
-
-    return (
-        <form>
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value={user.email}  onChange={handleChange}></input> 
+        console.log(props.logOnUser)
+        
+      };
+    
+      return (
+        <div className="submit-form">
+          <div>
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <input
+                type="text"
+                className="form-control"
+                id="name"
+                required
+                value={user.email}
+                onChange={handleInputChange}
+                name="email"
+              />
             </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label" >Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1"  value={user.password}  onChange={handleChange}></input>
+    
+            <div className="form-group">
+              <label htmlFor="password">password</label>
+              <input
+                type="password"
+                className="form-control"
+                id="password"
+                required
+                value={user.password}
+                onChange={handleInputChange}
+                name="password"
+              />
             </div>
-            <button type="submit" class="btn btn-primary" onClick={login(user, props.func)}>Submit</button>
-        </form>
-    )
-}
+    
+            <button onClick={login} className="btn btn-success">
+              Login
+            </button>
+          </div>
+        </div>
+      );
+    
+};

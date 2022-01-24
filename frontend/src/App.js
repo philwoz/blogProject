@@ -16,6 +16,7 @@ function App() {
   // const [userDet, setUserDet] = React.useState(null);
   const [logOnUser, setLogOnUser] = React.useState(null);
 
+
   return (
 
     <div>
@@ -25,7 +26,7 @@ function App() {
           <Route exact path="/allposts" element={<AllPosts />} />
           <Route path="/mypost" element={<MyPosts />} />
           <Route path="/addpost" element={<AddPost />} />
-          <Route path="/login" element={<LoginPage func={setLogOnUser}/>} />
+          <Route path="/login" element={<LoginPage setLogOnUser={setLogOnUser} logOnUser={logOnUser} />}/>
           <Route path="/register" element={<RegPage />} />
         </Routes>
       </div>
