@@ -16,6 +16,7 @@ export const AllPosts = (props) => {
             return (
             <div>
                 <PostCard key={index} name={item.name} content={item.content} />
+                <h1>{props.logOnUser}</h1>
               </div>
             );
           })}</div>

@@ -25,7 +25,7 @@ export const LoginPage = (props) => {
         .then(res=>{alert(res.data.message)
         props.setLogOnUser(res.data.user)
         navigate.push('/')
-        }).catch(error => {
+        }).catch((error) => {
             console.log(error)
         })
         console.log(props.logOnUser)
