@@ -15,7 +15,7 @@ export const AllPosts = (props) => {
         {posts.map((item, index) => {
             return (
             <div>
-                <PostCard key={index} title={item.title} content={item.content} />
+                <PostCard key={index} name={item.name} content={item.content} />
               </div>
             );
           })}</div>
