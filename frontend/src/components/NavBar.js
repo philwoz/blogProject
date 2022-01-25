@@ -16,7 +16,7 @@ export const NavBar = (props) => {
                         <Nav.Link href="/allposts">All Posts</Nav.Link>
                         <Nav.Link href="/mypost">My Posts</Nav.Link>
                         <Nav.Link href="/addpost">Add Post</Nav.Link>
-                        <Nav.Link href="">Logged in as {props.logOnUser}</Nav.Link>
+                        <Nav.Link href="">Logged in as {props.user.name}</Nav.Link>
                         <Nav.Link href="">Logout</Nav.Link>
                         
                     </Nav>

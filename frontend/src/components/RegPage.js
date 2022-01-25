@@ -1,42 +1,92 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
+
 export const RegPage = (props) => {
-    // const [user, setUser] = useState({
-    //     name: "",
-    //     email: "",
-    //     password: ""
-    // })
-    // const handleChange = e => {
-    //     const { name, value } = e.target
-    //     setUser({
-    //         ...user,
-    //         [name]: value
-    //     })
-    // }
+    const [user, setUser] = useState({
+        name: "",
+        email: "",
+        password: ""
+    })
 
-    // const register = () => {
-    //     const {name, email, password} = user
+    const handleChange = e => {
+        const { name, value } = e.target
+        setUser({
+            ...user,
+            [name]: value
 
-    // }
+        })
+    }
 
-
+    const register = () => {
+        const { name, email, password } = user
+        if (name && email && password) {
+            axios.post("http://localhost:5000/user", user)
+                .then(res => {
+                    alert("successfully registered")
+                    const userState = {
+                        email: user.name,
+                        password: user.password,
+                    }
+                    props.setLogOnUser(userState)
+                    console.log(res)
+                })
+        }
+        else {
+            alert("invalid input")
+        };
+    }
 
     return (
-        <form>
-            <div className="mb-3">
-                <label for="exampleInputUser1" class="form-label">User Name</label>
-                <input type="UserName" class="form-control" id="exampleInputUser1" aria-describedby="userlHelp"></input>
+        <div className="submit-form">
+            <div>
+                <div className="form-group">
+                    <label htmlFor="name">Name</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="name"
+                        required
+                        value={user.name}
+                        onChange={handleChange}
+                        name="name"
+                    />
+                </div>
+
+
+                <div className="form-group">
+                    <label htmlFor="email">Email</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="email"
+                        required
+                        value={user.email}
+                        onChange={handleChange}
+                        name="email"
+                    />
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="password">password</label>
+                    <input
+                        type="password"
+                        className="form-control"
+                        id="password"
+                        required
+                        value={user.password}
+                        onChange={handleChange}
+                        name="password"
+                    />
+                </div>
+
+                <button onClick={register} className="btn btn-success">
+                    Register
+                </button>
             </div>
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"></input>
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1"></input>
-            </div>
-            <button type="submit" class="btn btn-primary">Register</button>
-        </form>
-    )
-}
+
+        </div>
+
+    );
+
+};

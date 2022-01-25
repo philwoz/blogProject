@@ -24,11 +24,11 @@ function App() {
       <NavBar user={logOnUser} />
       <div>
         <Routes>
-          <Route exact path="/allposts" element={<AllPosts logOnUser={logOnUser}/>} />
+          <Route exact path="/allposts" element={<AllPosts logOnUser={logOnUser} />} />
           <Route path="/mypost" element={<MyPosts />} />
           <Route path="/addpost" element={<AddPost />} />
-          <Route path="/login" element={<LoginPage setLogOnUser={setLogOnUser} logOnUser={logOnUser} />}/>
-          <Route path="/register" element={<RegPage />} />
+          <Route path="/login" element={<LoginPage setLogOnUser={setLogOnUser} logOnUser={logOnUser} />} />
+          <Route path="/register" element={<RegPage setLogOnUser={setLogOnUser} logOnUser={logOnUser} />} />
         </Routes>
       </div>
     </div>
